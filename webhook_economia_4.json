@@ -1,0 +1,110 @@
+{
+  "username": "RVC Bot",
+  "avatar_url": "https://i.imgur.com/8XxBcqm.png",
+  "embeds": [
+    {
+      "title": "🎭 Avatares — Parte 4",
+      "color": 11141120,
+      "description": "Emojis personalizados para seu jogador. Use `!avatar <emoji>` para equipar.",
+      "fields": [
+        {
+          "name": "⚪ Comuns",
+          "value": "⭐ `estrela1` - 1.000 🪙 (20 estoque)\n🤖 `robo1` - 1.200 🪙 (15 estoque)",
+          "inline": false
+        },
+        {
+          "name": "🔵 Raros",
+          "value": "🔥 `fogo1` - 1.500 🪙 (10 estoque)\n⚡ `raio1` - 2.000 🪙 (8 estoque)\n👻 `fantasma2` - 2.500 🪙 (7 estoque)",
+          "inline": false
+        },
+        {
+          "name": "🟣 Épicos",
+          "value": "💀 `caveira1` - 3.000 🪙 (5 estoque)\n💎 `diamante1` - 5.000 🪙 (5 estoque)",
+          "inline": false
+        },
+        {
+          "name": "🟡 Lendários",
+          "value": "👽 `alien1` - 30.000 🪙 (2 estoque)\n👑 `coroa1` - 50.000 🪙 (3 estoque)\n🐉 `dragao1` - 80.000 🪙 (2 estoque)",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "💰 Títulos de Riqueza",
+      "color": 16776960,
+      "fields": [
+        {
+          "name": "0-499 🪙",
+          "value": "🪙 Falido",
+          "inline": true
+        },
+        {
+          "name": "500-1.999 🪙",
+          "value": "🥉 Classe Baixa",
+          "inline": true
+        },
+        {
+          "name": "2.000-4.999 🪙",
+          "value": "🥈 Classe Média",
+          "inline": true
+        },
+        {
+          "name": "5.000-14.999 🪙",
+          "value": "🥇 Classe Alta",
+          "inline": true
+        },
+        {
+          "name": "15.000-49.999 🪙",
+          "value": "💰 Rico",
+          "inline": true
+        },
+        {
+          "name": "50.000-149.999 🪙",
+          "value": "💎 Milionário",
+          "inline": true
+        },
+        {
+          "name": "150.000-499.999 🪙",
+          "value": "👑 Magnata",
+          "inline": true
+        },
+        {
+          "name": "500.000-999.999 🪙",
+          "value": "🏛️ Oligarca",
+          "inline": true
+        },
+        {
+          "name": "1.000.000+ 🪙",
+          "value": "🌍 Dono do Servidor",
+          "inline": true
+        }
+      ]
+    },
+    {
+      "title": "🎨 Raridades",
+      "color": 8355711,
+      "fields": [
+        {
+          "name": "⚪ Comum",
+          "value": "Itens básicos e acessíveis",
+          "inline": true
+        },
+        {
+          "name": "🔵 Raro",
+          "value": "Itens melhores, preço médio",
+          "inline": true
+        },
+        {
+          "name": "🟣 Épico",
+          "value": "Itens premium, estoque limitado",
+          "inline": true
+        },
+        {
+          "name": "🟡 Lendário",
+          "value": "Itens raríssimos",
+          "inline": true
+        }
+      ]
+    }
+  ]
+}

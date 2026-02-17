@@ -1,0 +1,79 @@
+{
+  "username": "RVC Bot",
+  "avatar_url": "https://i.imgur.com/8XxBcqm.png",
+  "embeds": [
+    {
+      "title": "🎰 Apostas em Partidas",
+      "color": 16744192,
+      "fields": [
+        {
+          "name": "Como Funciona",
+          "value": "Nos primeiros 15s de partida 3x3, aposte em um time.",
+          "inline": false
+        },
+        {
+          "name": "Comando",
+          "value": "`!apostar 500 red` → Aposta 500 no time vermelho\n`!apostar 1000 blue` → Aposta 1000 no time azul\n`!odds` → Ver odds atuais",
+          "inline": false
+        },
+        {
+          "name": "Limites",
+          "value": "Mín: 50 🪙\nMáx: 10.000 🪙\nTaxa da casa: 5%",
+          "inline": true
+        },
+        {
+          "name": "Odds",
+          "value": "Calculadas pelo ELO médio dos times. Quanto maior a diferença, maiores as odds.",
+          "inline": true
+        }
+      ]
+    },
+    {
+      "title": "🐯 Tigrinho — Máquina de Slots",
+      "color": 16750848,
+      "fields": [
+        {
+          "name": "Comando",
+          "value": "`!tigrinho 100` → Aposta 100 moedas",
+          "inline": false
+        },
+        {
+          "name": "Símbolos",
+          "value": "🍒 30% (1.5x) | 🍋 25% (2.0x) | 🍊 20% (2.5x)\n🍇 15% (3.0x) | 💎 7% (5.0x) | 🐯 3% (10.0x)",
+          "inline": false
+        },
+        {
+          "name": "Resultados",
+          "value": "3️⃣ Iguais: Aposta × Multiplicador\n2️⃣ Dois iguais: Devolve aposta\n❌ Tudo diferente: Perde aposta",
+          "inline": false
+        },
+        {
+          "name": "Limites & Cooldown",
+          "value": "Mín: 20 🪙 | Máx: 3.000 🪙\nCooldown: 30 segundos",
+          "inline": false
+        },
+        {
+          "name": "🐯🐯🐯 TIGRINHO TRIPLO",
+          "value": "Se ganhar com 3 tigres, é anunciado para toda a sala!",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "💳 Transferência & Ranking",
+      "color": 16776960,
+      "fields": [
+        {
+          "name": "Transferir Moedas",
+          "value": "`!transferir 500 @jogador` → Envia 500 com 10% de taxa\nTa taxa é deduzida do valor enviado.",
+          "inline": false
+        },
+        {
+          "name": "Ver Rankings",
+          "value": "`!ranking coins` → Top ricos\n`!ranking elo` → Top ELO\n`!ranking apostas` → Top apostadores\n`!ranking cortes/levants/blocks/wins`",
+          "inline": false
+        }
+      ]
+    }
+  ]
+}

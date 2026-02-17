@@ -1,0 +1,89 @@
+{
+  "username": "RVC Bot",
+  "avatar_url": "https://i.imgur.com/8XxBcqm.png",
+  "embeds": [
+    {
+      "title": "📦 Lootboxes — Parte 2",
+      "color": 10494256,
+      "fields": [
+        {
+          "name": "Lootbox Comum | ∞ estoque",
+          "value": "ID: `lootbox1` | Preço: 800 🪙 | ⚪ Comum",
+          "inline": false
+        },
+        {
+          "name": "Lootbox Rara | 20 estoque",
+          "value": "ID: `lootbox2` | Preço: 2.500 🪙 | 🔵 Raro",
+          "inline": false
+        },
+        {
+          "name": "Lootbox Épica | 5 estoque",
+          "value": "ID: `lootbox3` | Preço: 20.000 🪙 | 🟣 Épico",
+          "inline": false
+        },
+        {
+          "name": "Lootbox Lendária | 0 estoque",
+          "value": "ID: `lootbox4` | Preço: 50.000 🪙 | 🟡 Lendário (eventos)",
+          "inline": false
+        },
+        {
+          "name": "🎲 Como Funciona",
+          "value": "1. Compre lootbox\n2. Sistema sorteia raridade (50% Comum, 30% Raro, 15% Épico, 5% Lendário)\n3. Recebe item aleatório ou moedas por duplicata",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "🪙 Compensação de Duplicata",
+      "color": 16766464,
+      "fields": [
+        {
+          "name": "⚪ Comum",
+          "value": "3.000 🪙",
+          "inline": true
+        },
+        {
+          "name": "🔵 Raro",
+          "value": "10.000 🪙",
+          "inline": true
+        },
+        {
+          "name": "🟣 Épico",
+          "value": "25.000 🪙",
+          "inline": true
+        },
+        {
+          "name": "🟡 Lendário",
+          "value": "50.000 🪙",
+          "inline": true
+        },
+        {
+          "name": "📢 Anúncio",
+          "value": "Itens épicos e lendários são anunciados para toda a sala!",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "🚀 Furar Fila",
+      "color": 65280,
+      "fields": [
+        {
+          "name": "👑 VIPs",
+          "value": "✅ 3 usos grátis/dia\n✅ Cooldown: 1h30min\n✅ Não consome passes\n`!furarfila`",
+          "inline": true
+        },
+        {
+          "name": "🛒 Quem Compra",
+          "value": "✅ Sem limite diário\n✅ Cooldown: 1h30min\n✅ Consome passes (ID: `furafila`)\nPreço: 1.000 🪙/uso",
+          "inline": true
+        },
+        {
+          "name": "💡 Dica",
+          "value": "`!comprar furafila 20` = 20 usos\nCada uso consome 1 passe do inventário",
+          "inline": false
+        }
+      ]
+    }
+  ]
+}

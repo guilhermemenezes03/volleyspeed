@@ -1,0 +1,88 @@
+{
+  "username": "RVC Bot",
+  "avatar_url": "https://i.imgur.com/8XxBcqm.png",
+  "embeds": [
+    {
+      "title": "🎮 Comandos Economia — Parte 5",
+      "color": 16776960,
+      "fields": [
+        {
+          "name": "💰 Saldo & Diário",
+          "value": "`!coins` → Ver saldo, ELO, stats\n`!saldo`, `!carteira`, `!wallet` (aliases)",
+          "inline": false
+        },
+        {
+          "name": "📅 Recompensa Diária",
+          "value": "`!daily` → Coletar 200🪙 + streak bonus\n`!diario` (alias)\n⏰ Cooldown: 20 horas",
+          "inline": false
+        },
+        {
+          "name": "💸 Transferência",
+          "value": "`!transferir 500 @jogador` → Envia com 10% taxa\n`!pagar`, `!pay`, `!transfer` (aliases)",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "🏪 Comandos Loja",
+      "color": 3394560,
+      "fields": [
+        {
+          "name": "Ver Loja",
+          "value": "`!loja` → Todas as categorias\n`!loja avatar` → Avatares\n`!loja boost` → Boosts\n`!loja lootbox` → Lootboxes\n`!loja fila` → Furar fila",
+          "inline": false
+        },
+        {
+          "name": "Comprar",
+          "value": "`!comprar estrela1` → 1 unidade\n`!comprar furafila 20` → 20 usos\n`!buy` (alias)",
+          "inline": false
+        },
+        {
+          "name": "Inventário & Avatar",
+          "value": "`!inventario` → Ver itens ativos\n`!inventory`, `!inv` (aliases)\n`!avatar` → Listar avatares\n`!avatar 👑` → Equipar avatar",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "🎰 Comandos Apostas & Rankings",
+      "color": 16744192,
+      "fields": [
+        {
+          "name": "Apostas",
+          "value": "`!apostar 500 red` → Apostar 500 no red\n`!odds` → Ver odds\n`!odds` (alias: `!bet`)\n`!tigrinho 200` → Slots (30s cooldown)",
+          "inline": false
+        },
+        {
+          "name": "Rankings",
+          "value": "`!ranking coins` → Ricos\n`!ranking elo` → Top ELO\n`!ranking apostas` → Apostadores\n`!ranking cortes/levants/blocks/wins`\n`!top`, `!ricos`, `!leaderboard` (aliases)",
+          "inline": false
+        },
+        {
+          "name": "⚡ Furar Fila",
+          "value": "`!furarfila` → Furar a fila\nVIPs: 3x/dia grátis (90min cooldown)\nComprados: sem limite/dia (90min cooldown)",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "💡 Dicas Finais",
+      "color": 65280,
+      "fields": [
+        {
+          "name": "📌 Maximize Ganhos",
+          "value": "1. Colete diário todo dia (streak bonus)\n2. Use boost antes de partidas importantes\n3. Avatares lendários esgotam rápido!\n4. Lootboxes comuns têm melhor ROI",
+          "inline": false
+        },
+        {
+          "name": "🎯 Estratégia",
+          "value": "• Economize para boosts antes de streaks\n• Compre furafila em quantidade (sem taxa extra)\n• Apostas: calcule as odds antes de arriscar\n• Tigrinho: máx 10 rodadas seguidas (esperança negativa)",
+          "inline": false
+        }
+      ],
+      "footer": {
+        "text": "RVC Volley Bot • Sistema de Economia Completo • Fevereiro 2026"
+      }
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+import { Room } from "haxball-extended-room";
+import HaxballJS from "haxball.js";
+import Settings from "./settings.json";
+import { ballHeightModule } from "./modules/ballHeight";
+import { MapManager } from "./modules/mapManager";
+import { baseGameMode } from "./modules/baseGamemode";
+import { ScoreModule } from "./modules/score";
+import { ToucherModule } from "./modules/lastTouchers";
+import { TouchPhaseModule } from "./modules/TouchPhase";
+import { BasicCommands } from "./modules/basicCommands";
+import { BetterChat } from "./modules/betterChat";
+import { AvatarModule } from "./modules/avatarModule";
+import { RoomState } from "./roomState";
+import { AutoMoveModule } from "./modules/automoveModule";
+import { AntiAfkSystem } from "./modules/afkDetection";
+import { ClockDetector } from "./modules/clockTick";
+import { AuthModule } from "./modules/authModule";
+import { DiscordConnector } from "./discord/connector";
+import { LoggerModule } from "./modules/loggerModule";
+import { VoteBanModule } from "./modules/votebanModule";
+import { pointModule } from "./modules/pointModule";
+import { DisableAutoMove } from "./modules/disableAutoMove";
+import { StatusCounter } from "./modules/statusCounter";
+import { AFKCommand } from "./modules/afkCommand";
+import { RecordingModule } from "./modules/recordingSystem";
+import { FuraModule } from "./modules/FuraModule";
+import { ReserveModule } from "./modules/reserveModule";
+import { PassCommand } from "./modules/passCommand";
+import { prisma } from "./database/prisma";
+import { UniformeModule } from "./modules/uniforme";
+import { SwapTeamsModule } from "./modules/swapTeamsModule";
+import { EconomyModule } from "./modules/economyModule";
+
+function getEnvMode() {
+  if(!process.argv[3]) return "prod";
+  return process.argv[2];
+}
+
+function getToken() {
+  if(!process.argv[3]) return process.argv[2];
+  return process.argv[3];
+}
+
+HaxballJS().then(async (HBInit) => {
+  console.log("[RVC] HaxballJS inicializado");
+  try {
+    const envMode = getEnvMode();
+    const token = getToken();
+    if (!token) {
+      console.log("[RVC] TOKEN não identificado.");
+      return;
+    }
+
+    console.log("[RVC] Criando room...");
+    const room = new Room<RoomState>(
+      {
+        roomName: Settings.roomName,
+        maxPlayers: Settings.maxPlayers,
+        public: envMode == "dev" ? false : true,
+        geo: Settings.geo,
+        token,
+      },
+      HBInit as any,
+    );
+
+    console.log("[RVC] Room criada, adicionando módulos...");
+    room.state.devMode = envMode == "dev" ? true : false;
+
+    try {
+      const discord = new DiscordConnector(process.env.DISCORD_TOKEN || "");
+
+      room.module(AvatarModule);
+      console.log("[RVC] AvatarModule carregado");
+      room.module(ToucherModule);
+      room.module(BasicCommands);
+      room.module(TouchPhaseModule);
+      room.module(ScoreModule);
+      room.module(MapManager);
+      room.module(ballHeightModule);
+      room.module(baseGameMode);
+      room.module(BetterChat);
+      room.module(AutoMoveModule);
+      room.module(AntiAfkSystem);
+      room.module(ClockDetector);
+      room.module(AuthModule as any, {
+        settings: {
+          discord
+        }
+      });
+      room.module(LoggerModule);
+      room.module(VoteBanModule);
+      room.module(pointModule);
+      room.module(DisableAutoMove);
+      room.module(StatusCounter);
+      room.module(AFKCommand);
+      room.module(RecordingModule);
+      room.module(FuraModule);
+      room.module(ReserveModule);
+      room.module(UniformeModule);
+      room.module(PassCommand);
+      room.module(SwapTeamsModule);
+      room.module(EconomyModule);
+
+      console.log("[RVC] Todos os módulos carregados");
+
+      room.setTeamColors(1, { angle: 60, textColor: 0xffffff, colors: [0xEAB91B, 0xD6A919, 0xC49B17] });
+      room.setTeamColors(2, { angle: 60, textColor: 0xffffff, colors: [0x55EB1F, 0x4DD61C, 0x47C41A] });
+
+      room.logging = false;
+      room.onPlayerChat = () => false;
+      room.onRoomLink = async (link: String) => {
+        console.log("[RVC] Sala aberta: " + link);
+        
+      };
+
+      room.onError = (e: any) => {
+        console.error("[RVC] Room Error:", e);
+      };
+
+      room.onPlayerJoin = (player: any) => {
+        console.log(`[RVC] ${player.name} entrou na sala`);
+      };
+
+      room.onPlayerLeave = (player: any) => {
+        console.log(`[RVC] ${player.name} saiu da sala`);
+      };
+
+      console.log("[RVC] Bot inicializado com sucesso!");
+    } catch (moduleErr: any) {
+      console.error("[RVC] Error loading modules:", moduleErr);
+    }
+  } catch (err: any) {
+    console.error("[RVC] Initialization Error:",  err);
+  }
+}).catch((err: any) => {
+  console.error("[RVC] Haxball Init Error:", err);
+});
+
+process.on('unhandledRejection', (reason: any) => {
+  console.error('[RVC] Unhandled Rejection:', reason);
+  // Don't exit on error
+});
+
+process.on('uncaughtException', (err: any) => {
+  console.error('[RVC] Uncaught Exception:', err);
+  // Don't exit on error
+});
+
+// Prevent process from exiting
+setInterval(() => {
+  // Keeps process alive
+}, 1000);

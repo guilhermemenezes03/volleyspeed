@@ -1,0 +1,167 @@
+import {
+  CommandExecInfo,
+  CustomEvent,
+  Event,
+  Module,
+  Room,
+} from "haxball-extended-room";
+import Settings from "../settings.json";
+import { RoomState } from "../roomState";
+
+export type BallChangeT = {
+  type: "up" | "down";
+  increaseRate: number;
+  height: number;
+};
+
+@Module
+export class ballHeightModule {
+  private currentBallChange: BallChangeT | null = null;
+  private counting = false;
+  private ballCountdown = 0;
+  private baseBallRadius = 0;
+
+  // Purple phase control
+  private purplePhaseActive = false;
+  private purplePhaseTicks = 0;
+  private purplePhaseTriggered = false;
+  private maxHeightReached = 0;
+
+  constructor(private $: Room<RoomState>) {
+    this.$.state.setBallChange = (change: BallChangeT) => {
+      if (!this.counting) return;
+      this.baseBallRadius = this.$.ball.radius || 0;
+      this.currentBallChange = change;
+      this.ballCountdown = 0;
+      // Reset purple phase tracking on new ball change
+      if (change.type == "up") {
+        this.purplePhaseTriggered = false;
+        this.purplePhaseActive = false;
+        this.purplePhaseTicks = 0;
+        this.maxHeightReached = 0;
+      }
+    };
+  }
+
+  isBallInFinalHeight(ballRadius: number, finalHeight: number) {
+    return ballRadius - this.baseBallRadius >= finalHeight;
+  }
+
+  @Event onGameTick() {
+    // Handle purple phase duration (725ms = 44 ticks)
+    if (this.purplePhaseActive) {
+      this.purplePhaseTicks++;
+      if (this.purplePhaseTicks >= 44) {
+        // Return to attack phase after 725ms
+        this.purplePhaseActive = false;
+        this.purplePhaseTicks = 0;
+        this.$.state.setTouchPhase!("attack");
+      }
+    }
+
+    if (!this.currentBallChange) return;
+    const ball = this.$.ball;
+    if (!ball.radius) return;
+
+    // Track max height during attack phase
+    if (this.$.state.touchPhase == "attack" && this.currentBallChange.type == "up") {
+      if (ball.radius > this.maxHeightReached) {
+        this.maxHeightReached = ball.radius;
+      }
+    }
+
+    // Trigger purple phase at half of descent (only during attack, when going down)
+    if (
+      this.$.state.touchPhase == "attack" &&
+      this.currentBallChange.type == "down" &&
+      !this.purplePhaseTriggered &&
+      this.maxHeightReached > 0
+    ) {
+      const baseRadius = Settings.mapSettings[this.$.state.currentMap!].ballRadius;
+      const midPoint = (this.maxHeightReached + baseRadius) / 2;
+      
+      if (ball.radius <= midPoint) {
+        this.purplePhaseTriggered = true;
+        this.purplePhaseActive = true;
+        this.purplePhaseTicks = 0;
+        this.$.state.setTouchPhase!("attackPurple");
+      }
+    }
+
+    if (
+      (this.currentBallChange.type == "up" &&
+        this.isBallInFinalHeight(ball.radius, this.currentBallChange.height)) ||
+      (this.currentBallChange.type == "down" &&
+        ball.radius <= this.currentBallChange.height) ||
+      (this.currentBallChange.type == "up" &&
+        ball.radius >= Settings.gameMode.maxBallRadius)
+    ) {
+      const count = this.$.state.ignoreBallCount ? 15 : 30;
+      if (this.ballCountdown < count) {
+        this.ballCountdown++;
+        return;
+      }
+      this.ballCountdown = 0;
+      ball.radius =
+        (this.currentBallChange.type == "up" && ball.radius) ||
+        this.currentBallChange.height;
+      const info = { ...this.currentBallChange };
+      this.currentBallChange = null;
+      this.$.customEvents.emit("onBallHeightEnd", info);
+      return;
+    }
+
+    this.ballCountdown = 0;
+    const coeff = this.currentBallChange.type == "down" ? -1 : 1;
+    let newBallRadius =
+      ball.radius + this.currentBallChange.increaseRate * coeff;
+    if (newBallRadius > Settings.gameMode.maxBallRadius)
+      newBallRadius = Settings.gameMode.maxBallRadius;
+    ball.radius = newBallRadius;
+  }
+
+  @CustomEvent onBallHeightEnd(info: BallChangeT) {
+    if (info.type == "down") return;
+    this.currentBallChange = {
+      type: "down",
+      increaseRate: Settings.gameMode.defaultDownRate,
+      height: Settings.mapSettings[this.$.state.currentMap!].ballRadius,
+    };
+  }
+
+  @CustomEvent onBallChangeSide() {
+    if (!this.currentBallChange) return;
+    if (this.currentBallChange.type == "up") return;
+    const ball = this.$.ball;
+    if (!ball || !ball.radius) return;
+    if (ball.radius >= 7.5) return;
+    this.$.state.setBallChange!({
+      type: "up",
+      increaseRate: this.currentBallChange.increaseRate,
+      height: 0.1,
+    });
+  }
+
+  private resetPurplePhase() {
+    this.purplePhaseActive = false;
+    this.purplePhaseTicks = 0;
+    this.purplePhaseTriggered = false;
+    this.maxHeightReached = 0;
+  }
+
+  @Event onGameStart() {
+    this.currentBallChange = null;
+    this.counting = true;
+    this.resetPurplePhase();
+  }
+  @Event onTeamGoal() {
+    this.currentBallChange = null;
+    this.counting = false;
+    this.resetPurplePhase();
+  }
+  @Event onPositionsReset() {
+    this.currentBallChange = null;
+    this.counting = true;
+    this.resetPurplePhase();
+  }
+}

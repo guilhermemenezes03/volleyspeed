@@ -1,0 +1,85 @@
+{
+  "username": "RVC Bot",
+  "avatar_url": "https://i.imgur.com/8XxBcqm.png",
+  "embeds": [
+    {
+      "title": "📊 Sistema de ELO — Como Funciona Detalhadamente",
+      "description": "O ELO determina seu nível de habilidade no RVC Volley. Ele muda baseado em vitórias e derrotas contra times de diferentes níveis (média de ELO dos 3 jogadores).",
+      "color": 16776960,
+      "fields": [
+        {
+          "name": "🎯 ELO Inicial",
+          "value": "Todos os jogadores começam com **1000 ELO**.\n\nO ELO representa sua habilidade estimada no vôlei.",
+          "inline": false
+        },
+        {
+          "name": "📈 Como Ganhar ELO",
+          "value": "**Vitórias:** + pontos de ELO\n**Derrotas:** - pontos de ELO\n\nQuanto maior a diferença de ELO entre você e o adversário, mais pontos você ganha/perde.",
+          "inline": false
+        },
+        {
+          "name": "⚖️ Cálculo de Mudança de ELO",
+          "value": "O sistema usa uma fórmula baseada no **ELO Rating System**:\n\n**Pontos ganhos/perdidos = K × (Resultado - Probabilidade)**\n\nOnde:\n• **K** = Fator de desenvolvimento (32 para jogadores ativos)\n• **Resultado** = 1 (vitória) ou 0 (derrota)\n• **Probabilidade** = Chance esperada de vitória",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "🎲 Probabilidade de Vitória",
+      "color": 3394560,
+      "fields": [
+        {
+          "name": "Fórmula da Probabilidade",
+          "value": "**P = 1 / (1 + 10^(Diferença/400))**\n\nOnde:\n• **Diferença** = ELO médio do time adversário - ELO médio do seu time\n• Se P = 0.6, seu time tem 60% de chance de ganhar",
+          "inline": false
+        },
+        {
+          "name": "Exemplos Práticos",
+          "value": "• **Mesmo ELO:** P = 50% (+16/-16 pontos)\n• **+200 ELO:** P = 76% (+6/-6 pontos)\n• **-200 ELO:** P = 24% (+25/-25 pontos)\n• **+400 ELO:** P = 91% (+3/-3 pontos)\n• **-400 ELO:** P = 9% (+29/-29 pontos)",
+          "inline": false
+        },
+        {
+          "name": "💡 Interpretação",
+          "value": "• **Ganhar de time com mais ELO médio:** Grande ganho!\n• **Perder de time com menos ELO médio:** Grande perda!\n• **Resultados esperados:** Pequenas mudanças",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "🏆 Ranks por ELO",
+      "color": 16744192,
+      "fields": [
+        {
+          "name": "🟤 Bronze (0-999)",
+          "value": "ELO: 0-999\nIniciantes no vôlei",
+          "inline": true
+        },
+        {
+          "name": "⚪ Prata (1000-1299)",
+          "value": "ELO: 1000-1299\nJogadores básicos",
+          "inline": true
+        },
+        {
+          "name": "🟡 Ouro (1300-1599)",
+          "value": "ELO: 1300-1599\nJogadores experientes",
+          "inline": true
+        },
+        {
+          "name": "🔵 Platina (1600-1899)",
+          "value": "ELO: 1600-1899\nElite",
+          "inline": true
+        },
+        {
+          "name": "💎 Diamante (1900-2299)",
+          "value": "ELO: 1900-2299\nLendas",
+          "inline": true
+        },
+        {
+          "name": "👑 Mestre (2300+)",
+          "value": "ELO: 2300+\nDeuses do vôlei",
+          "inline": true
+        }
+      ]
+    }
+  ]
+}

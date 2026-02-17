@@ -1,0 +1,88 @@
+{
+  "username": "RVC Bot",
+  "avatar_url": "https://i.imgur.com/8XxBcqm.png",
+  "embeds": [
+    {
+      "title": "💰 Sistema de Economia — Parte 1",
+      "description": "**Visão Geral**\n\nSistema de moedas 🪙 para comprar itens na loja, abrir lootboxes e personalizar avatares.",
+      "color": 16776960,
+      "fields": [
+        {
+          "name": "🪙 Moeda Única",
+          "value": "Sistema usa **apenas moedas (🪙)** como pagamento.\n\n> Gemas antigas convertidas: 1 gema = 1.000 moedas",
+          "inline": false
+        },
+        {
+          "name": "💎 Por Partida",
+          "value": "🎯 Vitória: +150 | Derrota: +30\n✂️ Corte: +20 | 🙌 Levantamento: +15\n🛡️ Bloqueio: +25 | 🏆 MVP: +100\n👥 Participação: +10",
+          "inline": false
+        },
+        {
+          "name": "📅 Diário",
+          "value": "Base: 200 🪙\nBônus streak: +50 🪙/dia (máx 500)\n\n`!daily` ou `!diario`",
+          "inline": false
+        }
+      ],
+      "footer": {
+        "text": "RVC Volley Bot • Fevereiro 2026"
+      }
+    },
+    {
+      "title": "🏪 Loja — Categorias",
+      "color": 3394560,
+      "fields": [
+        {
+          "name": "🎭 Avatares (10 itens)",
+          "value": "`!loja avatar` → Ver disponíveis\n`!avatar <emoji>` → Equipar",
+          "inline": true
+        },
+        {
+          "name": "⚡ Boosts (4 itens)",
+          "value": "`!loja boost` → Ver disponíveis\n`!comprar boost2x` → Comprar",
+          "inline": true
+        },
+        {
+          "name": "📦 Lootboxes (4 itens)",
+          "value": "`!loja lootbox` → Ver disponíveis\n`!comprar lootbox1` → Comprar",
+          "inline": true
+        },
+        {
+          "name": "🚀 Furar Fila (∞ estoque)",
+          "value": "`!comprar furafila 1` → 1 uso\n`!comprar furafila 20` → 20 usos",
+          "inline": true
+        },
+        {
+          "name": "💡 Dica de Compra",
+          "value": "Use `!comprar idnome` ou `!comprar nome`\nExemplo: `!comprar estrela1` ou `!comprar Avatar Estrela`",
+          "inline": false
+        }
+      ]
+    },
+    {
+      "title": "⚡ Boosts — Estoque Infinito",
+      "color": 65535,
+      "fields": [
+        {
+          "name": "Boost 2x 1h",
+          "value": "ID: `boost2x` | Preço: 500 🪙 | ⚪ Comum",
+          "inline": false
+        },
+        {
+          "name": "Boost 2x 3h",
+          "value": "ID: `boost2x3h` | Preço: 1.200 🪙 | 🔵 Raro",
+          "inline": false
+        },
+        {
+          "name": "Boost 3x 1h",
+          "value": "ID: `boost3x` | Preço: 2.000 🪙 | 🟣 Épico",
+          "inline": false
+        },
+        {
+          "name": "Mega Boost 5x 30min",
+          "value": "ID: `boost5x` | Preço: 25.000 🪙 | 🟡 Lendário",
+          "inline": false
+        }
+      ]
+    }
+  ]
+}

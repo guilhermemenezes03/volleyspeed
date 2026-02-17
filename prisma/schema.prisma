@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  nickname  String
+  discordId String   @unique
+  auth      String   @default("")
+  conn      String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Ban {
+  id   String @id @default(cuid())
+  auth String
+  ip   String
+}
+
+model Status {
+  id        String @id @default(cuid())
+  discordId String
+  cortes    Int    @default(0)
+  levants   Int    @default(0)
+  blocks    Int    @default(0)
+  wins      Int    @default(0)
+  loses     Int    @default(0)
+  streak    Int    @default(0)
+  elo       Int    @default(1000)
+}
+
+model Uniforme {
+  id        String   @id @default(cuid())
+  name      String
+  code      String
+  userId    String
+  createdAt DateTime @default(now())
+}
+
+model Economy {
+  id            String   @id @default(cuid())
+  discordId     String   @unique
+  coins         Int      @default(0)
+  gems          Int      @default(0)
+  totalEarned   Int      @default(0)
+  totalSpent    Int      @default(0)
+  totalBetWon   Int      @default(0)
+  totalBetLost  Int      @default(0)
+  totalBets     Int      @default(0)
+  betsWon       Int      @default(0)
+  betsLost      Int      @default(0)
+  dailyStreak   Int      @default(0)
+  lastDaily     DateTime?
+  lastTigrinho  DateTime?
+  multiplier    Float    @default(1.0)
+  multiplierExp DateTime?
+  vipExpires    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  purchases     Purchase[]
+  transactions  Transaction[]
+}
+
+model ShopItem {
+  id          String   @id @default(cuid())
+  code        String?  @unique // id publico para compra (ex: boost1, furafila1)
+  name        String
+  description String
+  price       Int
+  currency    String   @default("coins") // "coins" or "gems"
+  category    String   // "avatar", "boost", "vip", "consumable", "lootbox", "fila"
+  rarity      String   @default("common") // "common", "rare", "epic", "legendary"
+  effect      String   // JSON string with effect data
+  stock       Int      @default(-1) // -1 = unlimited
+  maxPerUser  Int      @default(-1) // -1 = unlimited
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  purchases   Purchase[]
+}
+
+model Purchase {
+  id         String   @id @default(cuid())
+  economyId  String
+  itemId     String
+  quantity   Int      @default(1)
+  totalPrice Int
+  usesLeft   Int      @default(-1) // -1 = permanent/unlimited
+  expiresAt  DateTime?
+  isActive   Boolean  @default(true) // se o item está ativo no inventário
+  createdAt  DateTime @default(now())
+  economy    Economy  @relation(fields: [economyId], references: [id])
+  item       ShopItem @relation(fields: [itemId], references: [id])
+}
+
+model LootboxOpening {
+  id         String   @id @default(cuid())
+  discordId  String
+  lootboxId  String   // id do ShopItem da lootbox
+  itemWonId  String   // id do ShopItem que ganhou
+  rarity     String   // rarity do item ganho
+  createdAt  DateTime @default(now())
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  economyId   String
+  type        String   // "earn", "spend", "transfer_in", "transfer_out", "tax", "daily", "bet", "lootbox"
+  amount      Int
+  currency    String   @default("coins")
+  description String
+  createdAt   DateTime @default(now())
+  economy     Economy  @relation(fields: [economyId], references: [id])
+}

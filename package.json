@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.0",
+    "@prisma/client": "^7.4.0",
+    "@types/node": "^22.13.10",
+    "discord.js": "^14.18.0",
+    "esbuild": "^0.24.2",
+    "haxball-extended-room": "^3.0.0",
+    "haxball.js": "^3.2.1",
+    "pg": "^8.18.0",
+    "prisma": "^7.4.0",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "dev": "bun ./index.ts dev",
+    "prod": "bun ./index.ts prod",
+    "compile": "bun build ./index.ts --outdir ./build --sourcemap --target bun"
+  },
+  "trustedDependencies": [
+    "@mertushka/node-datachannel",
+    "@prisma/client",
+    "@prisma/engines",
+    "esbuild",
+    "node-datachannel",
+    "prisma"
+  ]
+}
