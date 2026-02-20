@@ -57,14 +57,30 @@ export class baseGameMode {
     return newTeam;
   }
 
-  getLastToucherTeam(): 1 | 2 {
+  // Retorna o time que ERROU (time do último jogador que tocou)
+  getLastToucherTeamRaw(): 1 | 2 | null {
     const touchers = this.$.state.absTouchers as Player[];
+    if (!touchers || !touchers[0]) return null;
+    const team = touchers[0].team;
+    if (team !== 1 && team !== 2) return null;
+    return team;
+  }
+
+  // Retorna o time que deve GANHAR o ponto (adversário do último tocador)
+  getLastToucherTeam(): 1 | 2 {
+    const lastToucherTeam = this.getLastToucherTeamRaw();
+    // Se não conseguir determinar quem tocou, usa a posição da bola como fallback
+    if (lastToucherTeam === null) {
+      const ball = this.$.ball;
+      // Se a bola saiu do lado do blue (x > 0), RED provavelmente atacou e errou -> BLUE ganha
+      // Se a bola saiu do lado do red (x < 0), BLUE provavelmente atacou e errou -> RED ganha
+      if (ball && ball.x !== undefined) {
+        return ball.x > 0 ? 2 : 1;
+      }
+      return 1; // Fallback final
+    }
     // Retorna o time ADVERSÁRIO do último jogador que tocou
-    // Se vermelho (1) tocou, azul (2) ganha o ponto
-    // Se azul (2) tocou, vermelho (1) ganha o ponto
-    if (!touchers || !touchers[0]) return 1; // Fallback
-    const lastToucherTeam = touchers[0].team;
-    return lastToucherTeam == 1 ? 2 : 1;
+    return lastToucherTeam === 1 ? 2 : 1;
   }
 
   startServe() {
