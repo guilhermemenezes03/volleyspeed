@@ -59,9 +59,12 @@ export class baseGameMode {
 
   getLastToucherTeam(): 1 | 2 {
     const touchers = this.$.state.absTouchers as Player[];
-    let team: 1 | 2 = 1;
-    if (touchers[0] && touchers[0].team == 1) team = 2;
-    return team;
+    // Retorna o time ADVERSÁRIO do último jogador que tocou
+    // Se vermelho (1) tocou, azul (2) ganha o ponto
+    // Se azul (2) tocou, vermelho (1) ganha o ponto
+    if (!touchers || !touchers[0]) return 1; // Fallback
+    const lastToucherTeam = touchers[0].team;
+    return lastToucherTeam == 1 ? 2 : 1;
   }
 
   startServe() {
@@ -487,15 +490,22 @@ export class baseGameMode {
     const mapX = Settings.mapSettings[map].mapX + 5;
     const mapY = Settings.mapSettings[map].mapY + 5;
 
+    // Verifica se a bola caiu dentro dos limites da quadra
     if (ball.x > -mapX && ball.x < mapX && ball.y > -mapY && ball.y < mapY) {
+      // Ball.x > 0 = lado azul (direita)
+      // Ball.x < 0 = lado vermelho (esquerda)
       if (ball.x > 0) {
-        this.scoreTo(1, "Bola caiu na quadra do azul");
+        // Bola caiu no lado do azul, ponto pro vermelho
+        this.scoreTo(1, "Ponto do vermelho");
       } else {
-        this.scoreTo(2, "Bola caiu na quadra do vermelho");
+        // Bola caiu no lado do vermelho, ponto pro azul
+        this.scoreTo(2, "Ponto do azul");
       }
     } else {
+      // Bola caiu fora - ponto pro time adversário de quem tocou por último
       const team = this.getLastToucherTeam();
-      this.scoreTo(team, "Bola caiu fora da quadra");
+      const teamName = team == 1 ? "vermelho" : "azul";
+      this.scoreTo(team, `Bola fora - ponto do ${teamName}`);
     }
     this.$.discs[4].x = ball.x;
     this.$.discs[4].y = ball.y;

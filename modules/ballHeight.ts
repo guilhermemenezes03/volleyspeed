@@ -48,11 +48,11 @@ export class ballHeightModule {
   }
 
   @Event onGameTick() {
-    // Handle purple phase duration (725ms = 44 ticks)
+    // Handle purple phase duration (400ms = 24 ticks)
     if (this.purplePhaseActive) {
       this.purplePhaseTicks++;
-      if (this.purplePhaseTicks >= 44) {
-        // Return to attack phase after 725ms
+      if (this.purplePhaseTicks >= 24) {
+        // Return to attack phase after 400ms
         this.purplePhaseActive = false;
         this.purplePhaseTicks = 0;
         this.$.state.setTouchPhase!("attack");

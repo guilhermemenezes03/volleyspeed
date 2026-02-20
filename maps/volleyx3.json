@@ -172,8 +172,8 @@
 	],
 
 	"playerPhysics" : {
-		"acceleration" : 0.157,
-		"kickingAcceleration" : 0.164,
+		"acceleration" : 0.110,
+		"kickingAcceleration" : 0.115,
 		"kickStrength" : 5,
 		"bCoef" : 0
 

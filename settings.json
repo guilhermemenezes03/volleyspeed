@@ -111,79 +111,79 @@
       "volleyx3": {
         "serve": {
           "invMass": 2.4,
-          "increaseRate": 1.4,
+          "increaseRate": 1.96,
           "height": 7,
           "color": null
         },
         "fastServeTouch": {
           "invMass": 0.3,
-          "increaseRate": 0.4,
+          "increaseRate": 0.56,
           "height": 7,
           "color": null
         },
         "fastServeCurve": {
           "invMass": 2.5,
-          "increaseRate": 0.3,
+          "increaseRate": 0.42,
           "height": 0,
           "color": "00aaff"
         },
         "fastServe": {
           "invMass": 2.5,
-          "increaseRate": 0.3,
+          "increaseRate": 0.42,
           "height": 0,
           "color": null
         },
         "serveReception": {
           "invMass": 2,
-          "increaseRate": 0.2,
+          "increaseRate": 0.28,
           "height": 2,
           "color": null
         },
         "reception": {
           "invMass": 0.8,
-          "increaseRate": 0.25,
+          "increaseRate": 0.35,
           "height": 8,
           "color": null
         },
         "receptionBlock": {
           "invMass": 1.2,
-          "increaseRate": 0.2,
+          "increaseRate": 0.28,
           "height": 8,
           "color": null
         },
         "levant": {
           "invMass": 0.6,
-          "increaseRate": 0.25,
+          "increaseRate": 0.35,
           "height": 6,
           "color": null
         },
         "levantFast": {
           "invMass": 1.4,
-          "increaseRate": 0.58,
+          "increaseRate": 0.81,
           "height": 0,
           "color": "37ff00"
         },
         "attack": {
           "invMass": 2.0,
-          "increaseRate": 0.84,
+          "increaseRate": 1.18,
           "height": 0,
           "color": "ff4400"
         },
         "attackPurple": {
           "invMass": 0.75,
-          "increaseRate": 0.95,
+          "increaseRate": 1.33,
           "height": 0,
           "color": "9933FF"
         },
         "block": {
           "invMass": 0.8,
-          "increaseRate": 0.76,
+          "increaseRate": 1.06,
           "height": 2,
           "color": null
         },
         "offBlock": {
           "invMass": 0.6,
-          "increaseRate": 0.4,
+          "increaseRate": 0.56,
           "height": 0,
           "color": null
         }
@@ -191,79 +191,79 @@
       "volleyx6": {
         "serve": {
           "invMass": 3.5,
-          "increaseRate": 0.7,
+          "increaseRate": 0.98,
           "height": 5,
           "color": null
         },
         "fastServeTouch": {
           "invMass": 0.3,
-          "increaseRate": 0.4,
+          "increaseRate": 0.56,
           "height": 10,
           "color": null
         },
         "fastServe": {
           "invMass": 3,
-          "increaseRate": 0.2,
+          "increaseRate": 0.28,
           "height": 0,
           "color": null
         },
         "fastServeCurve": {
           "invMass": 2.9,
-          "increaseRate": 0.3,
+          "increaseRate": 0.42,
           "height": 0,
           "color": "00aaff"
         },
         "serveReception": {
           "invMass": 2,
-          "increaseRate": 0.2,
+          "increaseRate": 0.28,
           "height": 2,
           "color": null
         },
         "reception": {
           "invMass": 1.2,
-          "increaseRate": 0.2,
+          "increaseRate": 0.28,
           "height": 8,
           "color": null
         },
         "receptionBlock": {
           "invMass": 1.2,
-          "increaseRate": 0.2,
+          "increaseRate": 0.28,
           "height": 8,
           "color": null
         },
         "levant": {
           "invMass": 1,
-          "increaseRate": 0.25,
+          "increaseRate": 0.35,
           "height": 5,
           "color": null
         },
         "levantFast": {
           "invMass": 1.8,
-          "increaseRate": 1.2,
+          "increaseRate": 1.68,
           "height": 0,
           "color": "37ff00"
         },
         "attack": {
           "invMass": 2.8,
-          "increaseRate": 0.4,
+          "increaseRate": 0.56,
           "height": 0,
           "color": "ff4400"
         },
         "attackPurple": {
           "invMass": 0.3,
-          "increaseRate": 1.0,
+          "increaseRate": 1.4,
           "height": 0,
           "color": "9933FF"
         },
         "block": {
           "invMass": 0.8,
-          "increaseRate": 0.4,
+          "increaseRate": 0.56,
           "height": 2,
           "color": null
         },
         "offBlock": {
           "invMass": 0.7,
-          "increaseRate": 0.3,
+          "increaseRate": 0.42,
           "height": 0,
           "color": null
         }

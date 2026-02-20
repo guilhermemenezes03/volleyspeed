@@ -304,7 +304,7 @@ export class EconomyModule {
         color: 0xAAAAAA,
       });
       this.$.send({
-        message: `[💰] Use !apostar <valor> <red/blue> em 15s!`,
+        message: `[💰] Use !apostar <valor> <red/blue> em 20s!`,
         color: 0xFFD700,
       });
 
@@ -317,7 +317,7 @@ export class EconomyModule {
             color: 0xFF6600,
           });
         }
-      }, 15000);
+      }, 20000);
     } else {
       this.betsOpen = false;
     }

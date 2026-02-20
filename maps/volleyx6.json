@@ -154,7 +154,7 @@
     "blueSpawnPoints": [[230, -370]],
 
 	"playerPhysics" : {
-		"acceleration" : 0.157,
+		"acceleration" : 0.110,
 		"kickingAcceleration" : 0.164,
 		"kickStrength" : 5,
 		"bCoef" : 0
