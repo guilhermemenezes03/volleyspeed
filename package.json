@@ -14,7 +14,9 @@
   "scripts": {
     "dev": "bun ./index.ts dev",
     "prod": "bun ./index.ts prod",
-    "compile": "bun build ./index.ts --outdir ./build --sourcemap --target bun"
+    "compile": "bun build ./index.ts --outdir ./build --sourcemap --target bun",
+    "build": "tsc",
+    "manager": "node manager-bot.js"
   },
   "trustedDependencies": [
     "@mertushka/node-datachannel",
