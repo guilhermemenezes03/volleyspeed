@@ -1,0 +1,19 @@
+{
+  "server": {
+    "execPath": "/usr/bin/chromium-browser",
+    "proxyEnabled": true,
+    "proxyServers": ["127.0.0.1:8000", "127.0.0.1:8001"]
+  },
+  "panel": {
+    "bots": [
+      {
+        "name": "volley",
+        "displayName": "RVC Volley Bot",
+        "path": "./bots/volley.js"
+      }
+    ],
+    "discordToken": "SEU_DISCORD_TOKEN_AQUI",
+    "discordPrefix": "!",
+    "mastersDiscordId": ["SEU_DISCORD_ID_AQUI"]
+  }
+}
