@@ -30,6 +30,8 @@ import { prisma } from "./database/prisma";
 import { UniformeModule } from "./modules/uniforme";
 import { SwapTeamsModule } from "./modules/swapTeamsModule";
 import { EconomyModule } from "./modules/economyModule";
+import { RoomManager } from "./modules/roomManager";
+
 
 function getEnvMode() {
   if(!process.argv[3]) return "prod";
@@ -102,6 +104,11 @@ HaxballJS().then(async (HBInit) => {
       room.module(EconomyModule);
 
       console.log("[RVC] Todos os módulos carregados");
+
+      // Setup room manager commands
+      const roomManager = new RoomManager();
+      discord.setupRoomManagerCommands(roomManager);
+      console.log("[RVC] Comandos de gerenciamento de salas configurados");
 
       room.setTeamColors(1, { angle: 60, textColor: 0xffffff, colors: [0xEAB91B, 0xD6A919, 0xC49B17] });
       room.setTeamColors(2, { angle: 60, textColor: 0xffffff, colors: [0x55EB1F, 0x4DD61C, 0x47C41A] });
