@@ -1,22 +1,20 @@
 // volley.js - Script para haxball-server
-// Este arquivo carrega e executa o bot RVC Volley
+// Este arquivo configura e executa o bot RVC Volley
 
-const path = require('path');
-
-// Caminho para o index.js compilado do bot
-const botPath = path.join(__dirname, '../index.js');
-
-module.exports = (HBInit) => {
-  // Carregar o bot principal
-  const botModule = require(botPath);
-
-  // Retornar a configuração da sala
-  return {
-    roomName: "🏐   | Vôlei X3 | SPEEDvolley |   🤾‍♀️",
-    maxPlayers: 12,
-    public: true,
-    geo: { lat: -22, lon: -43, code: "ES" },
-    token: process.argv[2] || process.env.HAXBALL_TOKEN,
-    noPlayer: true
-  };
-};
+HBInit({
+  roomName: "🏐   | Vôlei X3 | SPEEDvolley |   🤾‍♀️",
+  maxPlayers: 12,
+  public: true,
+  geo: { lat: -22, lon: -43, code: "ES" },
+  token: null, // Token será passado pelo haxball-server
+  noPlayer: true
+}).then((room) => {
+  room.send({
+    message: "[✅] RVC Volley Bot iniciado com sucesso!",
+    color: 0x00FF00
+  });
+  
+  console.log("[RVC] Sala aberta com sucesso!");
+}).catch((err) => {
+  console.error("[RVC] Erro ao iniciar a sala:", err);
+});
