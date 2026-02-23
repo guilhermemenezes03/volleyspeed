@@ -672,44 +672,4 @@ export class DiscordConnector {
 
         });
     }
-
-    setupRoomManagerCommands(roomManager: any) {
-        this.client.on(Events.MessageCreate, async (info) => {
-            if(!info.content.startsWith("!")) return;
-
-            const [command, ...args] = info.content.slice(1).split(" ");
-
-            if(command === "help") {
-                const helpEmbed = new EmbedBuilder()
-                    .setColor(0x00FF00)
-                    .setTitle("🎮 Comandos de Gerenciamento de Salas")
-                    .addFields(
-                        { name: "!open <sala> <token>", value: "Abre uma sala no servidor" },
-                        { name: "!close <sala>", value: "Fecha uma sala específica" },
-                        { name: "!list", value: "Lista todas as salas e seus status" },
-                        { name: "!closeall", value: "Fecha todas as salas" }
-                    );
-                info.reply({ embeds: [helpEmbed] });
-            }
-
-            if(command === "open" && args.length >= 2) {
-                const roomId = args[0];
-                const token = args[1];
-                await roomManager.openRoom(roomId, token, info.channel);
-            }
-
-            if(command === "close" && args.length >= 1) {
-                const roomId = args[0];
-                await roomManager.closeRoom(roomId, info.channel);
-            }
-
-            if(command === "list") {
-                await roomManager.listRooms(info.channel);
-            }
-
-            if(command === "closeall") {
-                await roomManager.closeAll(info.channel);
-            }
-        });
-    }
 }
